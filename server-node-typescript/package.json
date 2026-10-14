@@ -1,0 +1,35 @@
+{
+    "name": "server-node-typescript",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "tsx watch --env-file=.env src/index.ts",
+        "build": "tsc",
+        "start": "node --env-file=.env dist/index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devEngines": {
+        "packageManager": {
+            "name": "pnpm",
+            "version": "12.11.2",
+            "onFail": "download"
+        }
+    },
+    "packageManager": "pnpm@12.11.2",
+    "type": "module",
+    "dependencies": {
+        "@langchain/google-genai": "^2.3.2",
+        "express": "^5.3.0",
+        "langchain": "^1.5.16",
+        "zod": "^4.6.6"
+    },
+    "devDependencies": {
+        "@types/express": "^5.0.6",
+        "@types/node": "^26.6.5",
+        "tsx": "^4.23.15",
+        "typescript": "^7.0.2"
+    }
+}
