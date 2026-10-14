@@ -1,9 +1,9 @@
 import { getCinemaRecommendation } from "../../integrations/langchain/services.js";
-import type { RecommendationSchemaType } from "./recommendation.schema.js";
+import type { UserInputSchemaType } from "./recommendation.schema.js";
 
 export class RecommendationService {
-    async recommend(body: RecommendationSchemaType) {
+    async recommend(body: UserInputSchemaType) {
         const response = await getCinemaRecommendation(body);
-        return response.text;
+        return response;
     }
 }
