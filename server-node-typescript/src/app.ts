@@ -1,9 +1,9 @@
-import express from "express";
 import cors from "cors";
+import express from "express";
 import { corsOptions } from "./config/cors.js";
-import { healthCheck } from "./_module/health/health.controller.js";
 import { globalErrorHandler, notFoundHandler } from "./utils/error.js";
 import { recommendationsRouter } from "./routes/recommendations.route.js";
+import { healthRouter } from "./routes/health.routes.js";
 
 // Application Configuration
 const app = express();
@@ -13,12 +13,12 @@ app.use(cors(corsOptions));
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 
+// Routes
+app.use("/health-check", healthRouter);
+app.use("/api/v1/recommendations", recommendationsRouter);
+
 // Error Handling Middleware
 app.use(notFoundHandler);
 app.use(globalErrorHandler);
-
-// Routes
-app.get("/health", healthCheck);
-app.use("/api/v1/recommendations", recommendationsRouter);
 
 export default app;

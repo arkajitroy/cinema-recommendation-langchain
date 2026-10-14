@@ -1,6 +1,6 @@
-import { RecommendationSchemaType } from "../../_module/recommendations/recommendation.schema";
-import { LLMConnector } from "./model";
-import { promptTemplate } from "./template";
+import type { RecommendationSchemaType } from "../../_module/recommendations/recommendation.schema.js";
+import { LLMConnector } from "./model.js";
+import { promptTemplate } from "./template.js";
 
 export async function getCinemaRecommendation(payload: RecommendationSchemaType) {
     const promptChain = promptTemplate.pipe(LLMConnector);

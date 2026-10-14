@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import { env } from "../../config/env.js";
 
 export function healthCheck(req: Request, res: Response) {

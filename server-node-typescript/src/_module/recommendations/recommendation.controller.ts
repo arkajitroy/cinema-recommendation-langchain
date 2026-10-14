@@ -1,22 +1,22 @@
-import { Request, Response } from "express";
-import { RecommendationService } from "./recommendation.service";
-import { RecommendationSchema } from "./recommendation.schema";
+import type { Request, Response, NextFunction } from "express";
+import { RecommendationService } from "./recommendation.service.js";
+import { RecommendationSchema } from "./recommendation.schema.js";
 
 export class RecommendationController {
     constructor(private readonly recommendationService: RecommendationService) {}
 
-    recommend = async (req: Request, res: Response): Promise<Response> => {
+    recommend = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
         try {
             const validatedBody = RecommendationSchema.parse(req.body);
             const response = await this.recommendationService.recommend(validatedBody);
 
-            return res.status(200).json({
+            res.status(200).json({
+                success: true,
                 message: "Recommendation successful",
                 data: response,
             });
         } catch (error) {
-            console.error("Recommendation error:", error);
-            return res.status(500).json({ message: "Internal server error" });
+            next(error);
         }
     };
 }
